@@ -92,14 +92,14 @@ pip install torch numpy matplotlib
 
 ---
 
-## Background & Related Work
+## Background and Related Work
 
 This paper connects my 2007 PhD thesis directly to modern transformer
 architecture, 19 years later.
 
 - **PhD Thesis (2007)**: Engineering a Sequence Machine Through Spiking
   Neurons Employing Rank-Order Codes.
-  [British Library EThOS](https://ethos.bl.uk/OrderDetails.do?uin=uk.bl.ethos.789385)
+  [ResearchGate](https://www.researchgate.net/publication/215990961_Engineering_a_sequence_machine_through_spiking_neurons_employing_rank-order_codes)
 - **Furber, Brown, Bose et al. (2007)**: Sparse Distributed Memory Using
   Rank-Order Neural Codes. IEEE Transactions on Neural Networks.
   [DOI](https://doi.org/10.1109/TNN.2006.890804)
