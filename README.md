@@ -60,6 +60,38 @@ position 7, not the specific mathematical form used to express that.
 
 ---
 
+## Follow-up: Length generalization (added June 2026)
+
+The original experiment above tests all three encodings only at a single
+fixed sequence length. A natural follow-up question: what happens if the
+model is evaluated at lengths longer than it was trained on?
+
+`pe_length_generalization.py` extends the comparison with RoPE (the
+positional scheme used in most current open-weight models: Llama, Gemma,
+Qwen, Mistral, Phi) and trains once at length 64, then evaluates without
+retraining at lengths up to 192.
+
+Result, on the same toy copy task:
+
+| PE type | L=64 (trained) | L=96 | L=128 | L=192 |
+|---|---|---|---|---|
+| sinusoidal | 0.0003 | 0.0005 | 0.0008 | 0.0012 |
+| STPE | 0.0003 | 0.0002 | 0.0002 | 0.0002 |
+| rank (learned) | 0.0003 | N/A | N/A | N/A |
+| RoPE | 0.0003 | 0.0003 | 0.0003 | 0.0003 |
+
+The rank-based embedding, which performed best in the original
+in-distribution experiment, cannot be evaluated past its training
+length at all, since it is a lookup table sized to that length. STPE
+holds flat under length extrapolation, indistinguishable from RoPE
+within noise, despite coming from a completely different derivation.
+
+This is still a toy synthetic task, so treat it as a first signal, not
+a finished result. The next step, if useful, is repeating this on a
+small real text corpus before drawing firmer conclusions.
+
+---
+
 ## Code in this Repository
 
 | File | What it does |
